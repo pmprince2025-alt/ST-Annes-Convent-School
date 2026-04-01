@@ -49,19 +49,19 @@ const Contact = () => {
   return (
     <div className="w-full bg-off-white min-h-screen">
       {/* Page Hero */}
-      <section className="relative w-full h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img src="/building.jpg" alt="Contact Us" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/70"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[48px] animate-fade-up">Contact Us</h1>
+        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up px-6 text-center">Contact Us</h1>
       </section>
 
-      <section className="py-20 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <section className="section-padding max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20">
           
           {/* Left Column: Form */}
-          <div className="bg-white p-8 md:p-12 rounded-[20px] shadow-sm border border-gray-light relative overflow-hidden">
+          <div className="bg-white p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[20px] shadow-sm border border-gray-light relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-primary to-blue-dark"></div>
             
             <SectionHeader 
@@ -139,8 +139,8 @@ const Contact = () => {
           </div>
 
           {/* Right Column: Info & Map */}
-          <div className="flex flex-col gap-8">
-            <div className="bg-blue-deeper text-white p-8 md:p-12 rounded-[20px] shadow-lg xl:pr-20">
+          <div className="flex flex-col gap-6 sm:gap-8">
+            <div className="bg-blue-deeper text-white p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-[20px] shadow-lg xl:pr-20">
               <SectionHeader 
                 heading="School Directory" 
                 className="!mb-10 text-white [&>h2]:text-white"
@@ -190,7 +190,7 @@ const Contact = () => {
             </div>
 
             {/* Google Map */}
-            <div className="w-full h-64 md:h-80 rounded-[20px] overflow-hidden shadow-sm border border-gray-light bg-gray-200">
+            <div className="w-full h-56 sm:h-64 md:h-80 rounded-2xl sm:rounded-[20px] overflow-hidden shadow-sm border border-gray-light bg-gray-200">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14902.930030509652!2d83.889890!3d20.849260!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a23a31c55555555%3A0x6eac7cbbcdbb82e3!2sSonepur%2C%20Odisha!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                 width="100%" 

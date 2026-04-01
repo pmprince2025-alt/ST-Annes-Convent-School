@@ -151,7 +151,7 @@ const Home = () => {
       </section>
 
       {/* About Snippet */}
-      <section className="py-24 bg-off-white overflow-hidden">
+      <section className="section-padding bg-off-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div 
             ref={aboutRef}
@@ -180,7 +180,7 @@ const Home = () => {
       </section>
 
       {/* Latest Notices */}
-      <section className="py-24 bg-white border-t border-gray-light">
+      <section className="section-padding bg-white border-t border-gray-light">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <SectionHeader 
@@ -223,7 +223,7 @@ const Home = () => {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-24 bg-off-white border-t border-gray-light">
+      <section className="section-padding bg-off-white border-t border-gray-light">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <SectionHeader 
@@ -266,8 +266,8 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Holiday Highlights */}
-      <section className="py-24 bg-white border-t border-gray-light">
+      {/* Tentative Holiday & Programme Highlights */}
+      <section className="section-padding bg-white border-t border-gray-light">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
             <SectionHeader 
@@ -315,7 +315,7 @@ const Home = () => {
       </section>
 
       {/* Gallery Preview */}
-      <section className="py-24 bg-white border-t border-gray-light">
+      <section className="section-padding bg-white border-t border-gray-light">
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeader 
             label="Visuals" 

@@ -26,25 +26,25 @@ const About = () => {
   return (
     <div className="w-full">
       {/* Page Hero */}
-      <section className="relative w-full h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img src="/building.jpg" alt="About Our School" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/70"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[48px] animate-fade-up">About Our School</h1>
+        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up px-6 text-center">About Our School</h1>
       </section>
 
       {/* Vision & Mission */}
-      <section className="pt-16 pb-8 bg-off-white">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-yellow animate-fade-up">
+      <section className="pt-10 sm:pt-16 pb-8 bg-off-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          <div className="bg-white p-6 sm:p-10 rounded-xl sm:rounded-[10px] shadow-sm border-t-4 border-yellow animate-fade-up">
             <h2 className="font-display font-bold text-3xl text-blue-dark mb-6">Our Vision</h2>
             <p className="text-gray-text text-lg leading-relaxed">
               "ST Anne's Convent School is a nurturing ground for the holistic growth and development of young children to make an effective contribution to the nation for societal change and dynamic transformation."
             </p>
           </div>
-          <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-blue-primary animate-fade-up" style={{ animationDelay: '100ms' }}>
-            <h2 className="font-display font-bold text-3xl text-blue-dark mb-6">Our Mission</h2>
+          <div className="bg-white p-6 sm:p-10 rounded-xl sm:rounded-[10px] shadow-sm border-t-4 border-blue-primary animate-fade-up" style={{ animationDelay: '100ms' }}>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-blue-dark mb-4 sm:mb-6">Our Mission</h2>
             <ul className="space-y-4 text-gray-text">
               <li className="flex items-start gap-3">
                 <CheckCircle className="text-yellow shrink-0 mt-0.5" size={20} />
@@ -68,11 +68,11 @@ const About = () => {
       </section>
 
       {/* Principal's Message */}
-      <section className="pt-8 pb-24 bg-white border-y border-gray-light">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="pt-8 pb-12 sm:pb-24 bg-white border-y border-gray-light">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <SectionHeader label="Leadership" heading="Principal's Message" className="text-center mx-auto" flexCenter />
           
-          <div className="flex flex-col md:flex-row gap-12 mt-16 items-center">
+          <div className="flex flex-col md:flex-row gap-8 sm:gap-12 mt-10 sm:mt-16 items-center">
             <div className="w-48 h-48 md:w-64 md:h-64 shrink-0 rounded-full bg-blue-100 overflow-hidden shadow-xl border-4 border-white object-cover">
               {staffLoading ? (
                 <div className="w-full h-full bg-gray-200 animate-pulse"></div>
@@ -96,8 +96,8 @@ const About = () => {
       </section>
 
       {/* History Timeline */}
-      <section className="py-24 bg-off-white">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="section-padding bg-off-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <SectionHeader label="Our Journey" heading="School History" />
           
           <div className="mt-16 space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-blue-200">
@@ -124,13 +124,13 @@ const About = () => {
       </section>
 
       {/* Core Values */}
-      <section className="py-24 bg-white border-t border-gray-light">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="section-padding bg-white border-t border-gray-light">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <SectionHeader label="Foundation" heading="Our Core Values" className="mx-auto" />
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 mt-10 sm:mt-16">
             {values.map((v, i) => (
-              <div key={i} className="bg-white p-8 rounded-xl border border-gray-light shadow-sm hover:shadow-lg transition-shadow border-t-[3px] border-t-blue-primary text-center">
+              <div key={i} className="bg-white p-6 sm:p-8 rounded-xl border border-gray-light shadow-sm hover:shadow-lg transition-shadow border-t-[3px] border-t-blue-primary text-center">
                 <div className="w-16 h-16 mx-auto bg-blue-50 rounded-full flex items-center justify-center mb-6 text-blue-primary">
                   <v.icon size={32} />
                 </div>

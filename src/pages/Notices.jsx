@@ -48,25 +48,25 @@ const Notices = () => {
 
   return (
     <div className="w-full bg-off-white min-h-screen">
-      <section className="relative w-full h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img src="/building.jpg" alt="Notice Board" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/80 backdrop-blur-[2px]"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[48px] animate-fade-up flex items-center gap-4">
-          <BellRing size={40} className="text-yellow" /> Notice Board
+        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up flex items-center gap-3 sm:gap-4 px-6 text-center">
+          <BellRing size={32} className="text-yellow sm:w-10 sm:h-10" /> Notice Board
         </h1>
       </section>
 
-      <section className="py-16 max-w-6xl mx-auto px-6">
+      <section className="section-padding max-w-6xl mx-auto px-4 sm:px-6">
         {/* Filter Tabs */}
-        <div className="flex flex-wrap border-b border-gray-200 mb-8 bg-white rounded-t-xl overflow-hidden shadow-sm">
+        <div className="flex overflow-x-auto border-b border-gray-200 mb-6 sm:mb-8 bg-white rounded-t-xl shadow-sm scrollbar-hide">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
               className={clsx(
-                "flex-1 min-w-[120px] py-4 px-6 text-[15px] font-semibold transition-all outline-none",
+                "flex-1 min-w-[90px] sm:min-w-[120px] py-3 sm:py-4 px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold transition-all outline-none whitespace-nowrap",
                 filter === cat 
                   ? "bg-blue-50 text-blue-primary border-b-[3px] border-blue-primary" 
                   : "text-gray-text hover:text-blue-dark hover:bg-gray-50 border-b-[3px] border-transparent"
@@ -104,7 +104,7 @@ const Notices = () => {
 
                {/* Rows */}
                {filteredNotices.map((notice) => (
-                 <div key={notice.id} className="group relative flex flex-col md:flex-row items-start md:items-center py-6 px-6 md:px-8 hover:bg-blue-light/50 transition-colors">
+                 <div key={notice.id} className="group relative flex flex-col md:flex-row items-start md:items-center py-4 sm:py-6 px-4 sm:px-6 md:px-8 hover:bg-blue-light/50 transition-colors">
                    
                    {/* Date */}
                    <div className="w-full md:w-32 shrink-0 font-mono text-[13.5px] font-bold text-blue-primary mb-3 md:mb-0">

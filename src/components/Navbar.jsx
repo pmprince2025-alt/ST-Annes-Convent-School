@@ -83,29 +83,54 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={clsx(
-          'fixed inset-0 bg-blue-deeper z-[60] flex flex-col items-center justify-center transition-transform duration-300 transform',
-          isOpen ? 'translate-y-0' : '-translate-y-full'
+          'fixed inset-0 bg-blue-dark z-[60] flex flex-col transition-all duration-500 ease-in-out',
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         )}
       >
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 text-white hover:text-yellow p-2"
-        >
-          <X size={32} />
-        </button>
-        <div className="flex flex-col items-center gap-8">
-          {links.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={clsx(
-                'text-2xl font-medium tracking-wide transition-colors',
-                location.pathname === link.path ? 'text-yellow' : 'text-white'
-              )}
+        {/* Background Decorative Element */}
+        <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-blue-primary/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-5%] left-[-5%] w-80 h-80 bg-yellow/5 rounded-full blur-3xl" />
+
+        <div className="relative flex-1 flex flex-col px-8 py-12">
+          <div className="flex items-center justify-between mb-16">
+            <div className="flex items-center gap-3">
+              <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full bg-white p-0.5" />
+              <span className="font-display font-bold text-white tracking-tight">ST Anne's</span>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="w-12 h-12 flex items-center justify-center text-white bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition-all active:scale-90"
             >
-              {link.name}
-            </Link>
-          ))}
+              <X size={24} />
+            </button>
+          </div>
+
+          <div className="flex flex-col gap-6 overflow-y-auto">
+            {links.map((link, idx) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={clsx(
+                  'text-4xl font-display font-black tracking-tight transition-all duration-300 transform',
+                  isOpen ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0',
+                  location.pathname === link.path ? 'text-yellow' : 'text-white'
+                )}
+                style={{ transitionDelay: `${150 + idx * 50}ms` }}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-auto pt-10 border-t border-white/10">
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/40 mb-4">Quick Contact</p>
+            <div className="space-y-3">
+              <a href="tel:06654221118" className="flex items-center gap-3 text-blue-100/80 font-medium">
+                <span className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-yellow"><Menu size={16} /></span>
+                06654221118
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>

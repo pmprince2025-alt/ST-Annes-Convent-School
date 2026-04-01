@@ -18,28 +18,28 @@ const Academics = () => {
   return (
     <div className="w-full bg-off-white">
       {/* Page Hero */}
-      <section className="relative w-full h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img src="/classroom2.jpg" alt="Academics" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/70"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[48px] animate-fade-up">Academics</h1>
+        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up px-6 text-center">Academics</h1>
       </section>
 
       {/* Classes Offered / Curriculum Tabs */}
-      <section className="py-24">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="section-padding">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <SectionHeader label="Curriculum" heading="Classes Offered" className="text-center mx-auto" />
           
-          <div className="mt-12 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-gray-200">
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden border border-gray-200">
             {/* Tab Headers */}
-            <div className="flex flex-wrap border-b border-gray-200 bg-gray-50/50">
+            <div className="flex overflow-x-auto border-b border-gray-200 bg-gray-50/50 scrollbar-hide">
               {tabs.map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
                   className={clsx(
-                    "flex-1 min-w-[140px] py-4 px-6 text-[15px] font-semibold transition-all select-none outline-none",
+                    "flex-1 min-w-[120px] sm:min-w-[140px] py-3.5 sm:py-4 px-4 sm:px-6 text-[13px] sm:text-[15px] font-semibold transition-all select-none outline-none whitespace-nowrap",
                     activeTab === tab 
                       ? "bg-white text-blue-primary border-b-2 border-yellow shadow-[0_-4px_0_0_#F5C200_inset]" 
                       : "text-gray-text hover:text-blue-dark hover:bg-gray-100"
@@ -51,7 +51,7 @@ const Academics = () => {
             </div>
             
             {/* Tab Content */}
-            <div className="p-8 md:p-12 min-h-[300px]">
+            <div className="p-6 sm:p-8 md:p-12 min-h-[300px]">
               {academicsLoading ? (
                  <div className="animate-pulse space-y-4">
                    <div className="h-6 w-1/3 bg-gray-200 rounded"></div>
@@ -60,8 +60,8 @@ const Academics = () => {
                  </div>
               ) : currentLevelData ? (
                 <div className="animate-fade-up" style={{ animationDuration: '0.4s' }}>
-                  <h3 className="text-2xl font-display font-bold text-blue-dark mb-4">{currentLevelData.level} Education</h3>
-                  <p className="text-gray-text text-lg leading-relaxed mb-10 max-w-3xl">
+                  <h3 className="text-xl sm:text-2xl font-display font-bold text-blue-dark mb-3 sm:mb-4">{currentLevelData.level} Education</h3>
+                  <p className="text-gray-text text-base sm:text-lg leading-relaxed mb-8 sm:mb-10 max-w-3xl">
                     {currentLevelData.description}
                   </p>
                   
@@ -83,11 +83,11 @@ const Academics = () => {
       </section>
 
       {/* Co-Curricular */}
-      <section className="py-24 bg-blue-deeper text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="section-padding bg-blue-deeper text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-16">
             <p className="font-mono text-yellow text-sm uppercase tracking-widest mb-3">✦ Beyond the Classroom ✦</p>
-            <h2 className="font-display text-4xl font-bold">Co-Curricular Activities</h2>
+            <h2 className="font-display text-2xl sm:text-4xl font-bold">Co-Curricular Activities</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
@@ -116,8 +116,8 @@ const Academics = () => {
       </section>
 
       {/* Achievements */}
-      <section className="py-24 bg-white">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="section-padding bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <SectionHeader label="Hall of Fame" heading="Our Proud Achievements" className="text-center mx-auto" />
           
           <div className="mt-16 bg-off-white rounded-2xl border border-gray-light p-6 md:p-10">

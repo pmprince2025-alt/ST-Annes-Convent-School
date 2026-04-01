@@ -93,8 +93,8 @@ const Holidays = () => {
         </div>
       </section>
 
-      <section className="py-16 max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-8">
+      <section className="section-padding max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-6 sm:gap-8">
           <SectionHeader 
             className="!mb-0"
             label="Plan Ahead" 
@@ -140,7 +140,7 @@ const Holidays = () => {
                     <Calendar className="text-blue-primary group-hover:text-white transition-colors duration-500 opacity-20" size={32} />
                   </header>
 
-                  <div className="p-7 space-y-4 flex-1">
+                  <div className="p-5 sm:p-7 space-y-4 flex-1">
                     {monthEvents.length > 0 ? (
                       <>
                         <div className="space-y-4">

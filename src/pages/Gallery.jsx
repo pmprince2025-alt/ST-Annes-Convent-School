@@ -30,23 +30,23 @@ const Gallery = () => {
   return (
     <div className="w-full bg-off-white min-h-screen">
       {/* Page Hero */}
-      <section className="relative w-full h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img src="/tree-plantation.jpg" alt="Gallery" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/70"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[48px] animate-fade-up">Photo Gallery</h1>
+        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up px-6 text-center">Photo Gallery</h1>
       </section>
 
-      <section className="py-16 max-w-7xl mx-auto px-6">
+      <section className="section-padding max-w-7xl mx-auto px-4 sm:px-6">
         {/* Filter Tabs */}
-        <div className="flex flex-wrap gap-2 mb-12 justify-center">
+        <div className="flex gap-2 mb-8 sm:mb-12 overflow-x-auto pb-2 scrollbar-hide justify-start sm:justify-center">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
               className={clsx(
-                "px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm",
+                "px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm whitespace-nowrap",
                 filter === cat 
                   ? "bg-blue-primary text-white scale-105 shadow-md border border-transparent" 
                   : "bg-white text-gray-text border border-gray-lighter hover:border-blue-primary hover:text-blue-dark"
@@ -79,7 +79,7 @@ const Gallery = () => {
                 />
                 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-deeper/90 via-blue-deeper/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-deeper/90 via-blue-deeper/20 to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-6">
                   <span className="text-yellow text-xs font-bold uppercase tracking-widest mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
                     {photo.category}
                   </span>

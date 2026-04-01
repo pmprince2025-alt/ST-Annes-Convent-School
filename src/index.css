@@ -69,13 +69,20 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Section Styles */
   .section-label {
-    @apply font-mono text-xs uppercase text-blue-primary mb-3 block;
+    @apply font-mono text-[10px] sm:text-xs uppercase text-blue-primary mb-2 sm:mb-3 block;
   }
   .section-heading {
-    @apply text-4xl font-bold mb-4 lg:mb-6 leading-tight text-blue-dark;
+    @apply text-3xl sm:text-4xl font-bold mb-4 lg:mb-6 leading-tight text-blue-dark;
   }
   .section-subtext {
-    @apply text-lg text-gray-text max-w-2xl mb-12;
+    @apply text-base sm:text-lg text-gray-text max-w-2xl mb-8 sm:mb-12;
+  }
+}
+
+/* Responsive Padding Utilities */
+@layer utilities {
+  .section-padding {
+    @apply py-12 sm:py-24;
   }
 }
 

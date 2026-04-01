@@ -67,17 +67,17 @@ const Events = () => {
 
   return (
     <div className="w-full bg-off-white min-h-screen">
-      <section className="relative w-full h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <img src="/seminar.jpg" alt="Events" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/70"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[48px] animate-fade-up">Events & News</h1>
+        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up px-6 text-center">Events & News</h1>
       </section>
 
-      <section className="py-16 max-w-7xl mx-auto px-6">
+      <section className="section-padding max-w-7xl mx-auto px-4 sm:px-6">
         {/* Filter Bar */}
-        <div className="flex flex-wrap gap-2 mb-12 justify-center md:justify-start">
+        <div className="flex gap-2 mb-8 sm:mb-12 overflow-x-auto pb-2 scrollbar-hide justify-start md:justify-start">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -109,7 +109,7 @@ const Events = () => {
             {filteredEvents.map((event, idx) => (
               <Card key={event.id} delay={idx * 50} className="flex flex-col p-0 overflow-hidden group">
                 {/* Event Image Cover */}
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 sm:h-64 overflow-hidden">
                   <img 
                     src={getImageUrl(event.cover_image_url)} 
                     alt={event.title} 
@@ -130,7 +130,7 @@ const Events = () => {
                 </div>
                 
                 {/* Content */}
-                <div className="p-6 flex flex-col flex-1">
+                <div className="p-4 sm:p-6 flex flex-col flex-1">
                   <div className="flex justify-between items-start mb-3">
                     <Badge className="bg-blue-primary/10 text-blue-primary border-none">{event.category}</Badge>
                   </div>

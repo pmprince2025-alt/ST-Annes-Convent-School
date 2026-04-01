@@ -4,8 +4,8 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-blue-deeper text-white pt-16 pb-6">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+    <footer className="bg-blue-deeper text-white pt-10 sm:pt-16 pb-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-12 mb-10 sm:mb-12">
         
         {/* Col 1 */}
         <div>
@@ -54,7 +54,7 @@ const Footer = () => {
 
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 border-t border-white/10 pt-6 text-center text-gray-400 text-xs">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 border-t border-white/10 pt-6 text-center text-gray-400 text-[10px] sm:text-xs">
         © {new Date().getFullYear()} ST Anne's Convent School, Sonepur. All rights reserved.
       </div>
     </footer>
