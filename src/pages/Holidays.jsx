@@ -25,6 +25,14 @@ const MONTHS = [
 const Holidays = () => {
   const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [expandedMonths, setExpandedMonths] = useState({});
+
+  const toggleMonth = (monthKey) => {
+    setExpandedMonths(prev => ({
+      ...prev,
+      [monthKey]: !prev[monthKey]
+    }));
+  };
 
   const fetchHolidays = async () => {
     setLoading(true);
@@ -108,6 +116,9 @@ const Holidays = () => {
             {MONTHS.map((m, idx) => {
               const key = `${m.name} ${m.year}`;
               const monthEvents = groupedData[key] || [];
+              const isExpanded = expandedMonths[key];
+              const displayedEvents = isExpanded ? monthEvents : monthEvents.slice(0, 3);
+              const hasMore = monthEvents.length > 3;
 
               return (
                 <Card 
@@ -131,28 +142,41 @@ const Holidays = () => {
 
                   <div className="p-7 space-y-4 flex-1">
                     {monthEvents.length > 0 ? (
-                      monthEvents.map((event) => (
-                        <div key={event.id} className="flex gap-4 group/item">
-                          <div className={clsx(
-                            "w-10 h-10 rounded-lg shrink-0 flex flex-col items-center justify-center font-bold text-sm shadow-sm",
-                            event.type === 'Holiday' ? 'bg-red-500 text-white' : 'bg-emerald-500 text-white'
-                          )}>
-                            {new Date(event.date).getDate()}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-bold text-blue-dark leading-tight group-hover/item:text-blue-primary transition-colors">{event.title}</h4>
-                            {event.description && <p className="text-gray-text text-xs mt-1 line-clamp-1">{event.description}</p>}
-                            <div className="flex items-center gap-2 mt-1.5">
-                              <span className={clsx(
-                                "text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded",
-                                event.type === 'Holiday' ? 'bg-red-100 text-red-600' : 'bg-emerald-100 text-emerald-600'
+                      <>
+                        <div className="space-y-4">
+                          {displayedEvents.map((event) => (
+                            <div key={event.id} className="flex gap-4 group/item">
+                              <div className={clsx(
+                                "w-10 h-10 rounded-lg shrink-0 flex flex-col items-center justify-center font-bold text-sm shadow-sm",
+                                event.type === 'Holiday' ? 'bg-red-500 text-white' : 'bg-emerald-500 text-white'
                               )}>
-                                {event.type}
-                              </span>
+                                {new Date(event.date).getUTCDate()}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-bold text-blue-dark leading-tight group-hover/item:text-blue-primary transition-colors">{event.title}</h4>
+                                {event.description && <p className="text-gray-text text-xs mt-1 line-clamp-1">{event.description}</p>}
+                                <div className="flex items-center gap-2 mt-1.5">
+                                  <span className={clsx(
+                                    "text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5 rounded",
+                                    event.type === 'Holiday' ? 'bg-red-100 text-red-600' : 'bg-emerald-100 text-emerald-600'
+                                  )}>
+                                    {event.type}
+                                  </span>
+                                </div>
+                              </div>
                             </div>
-                          </div>
+                          ))}
                         </div>
-                      ))
+                        
+                        {hasMore && (
+                          <button
+                            onClick={() => toggleMonth(key)}
+                            className="w-full mt-2 py-2 text-xs font-bold uppercase tracking-wider text-blue-primary hover:text-blue-dark transition-colors flex items-center justify-center gap-1 border border-dashed border-blue-primary/30 rounded-xl hover:bg-blue-primary/5"
+                          >
+                            {isExpanded ? 'Show Less' : `Show More (+${monthEvents.length - 3})`}
+                          </button>
+                        )}
+                      </>
                     ) : (
                       <div className="h-full flex flex-col items-center justify-center py-10 opacity-30">
                         <Info size={40} className="mb-2" />
