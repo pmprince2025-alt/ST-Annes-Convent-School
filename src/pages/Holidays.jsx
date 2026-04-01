@@ -86,9 +86,9 @@ const Holidays = () => {
           <div className="absolute inset-0 bg-[#0A2744]/75"></div>
         </div>
         <div className="relative z-10 text-center px-6">
-          <h1 className="font-display font-bold text-white text-[40px] md:text-[56px] animate-fade-up">Academic Calendar</h1>
-          <p className="text-yellow font-medium tracking-widest uppercase text-sm mt-2 animate-fade-up" style={{ animationDelay: '200ms' }}>
-            Holiday & Programme List 2026-27
+          <h1 className="font-display font-bold text-white text-[40px] md:text-[56px] animate-fade-up">Tentative Holiday &</h1>
+          <p className="text-yellow font-medium tracking-widest uppercase text-sm mt-0 md:-mt-2 animate-fade-up" style={{ animationDelay: '200ms' }}>
+            Programme List 2026-27
           </p>
         </div>
       </section>
