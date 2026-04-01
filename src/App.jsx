@@ -11,6 +11,7 @@ const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
 const Academics = React.lazy(() => import('./pages/Academics'));
 const Events = React.lazy(() => import('./pages/Events'));
+const Holidays = React.lazy(() => import('./pages/Holidays'));
 const Notices = React.lazy(() => import('./pages/Notices'));
 const Gallery = React.lazy(() => import('./pages/Gallery'));
 const Contact = React.lazy(() => import('./pages/Contact'));
@@ -28,6 +29,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/academics" element={<Academics />} />
               <Route path="/events" element={<Events />} />
+              <Route path="/holidays" element={<Holidays />} />
               <Route path="/notices" element={<Notices />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/contact" element={<Contact />} />

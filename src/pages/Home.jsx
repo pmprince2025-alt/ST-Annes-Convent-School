@@ -14,6 +14,7 @@ const Home = () => {
   const [notices, setNotices] = useState([]);
   const [events, setEvents] = useState([]);
   const [gallery, setGallery] = useState([]);
+  const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Stats bar animation trigger
@@ -24,15 +25,24 @@ const Home = () => {
     const fetchHomeData = async () => {
       setLoading(true);
       try {
-        const [noticesRes, eventsRes, galleryRes] = await Promise.all([
+        const [noticesRes, eventsRes, galleryRes, holidaysRes] = await Promise.all([
           supabase.from('notices').select('*').eq('published', true).order('date', { ascending: false }).limit(3),
           supabase.from('events').select('*').order('date', { ascending: true }).limit(3),
-          supabase.from('gallery').select('*').order('created_at', { ascending: false }).limit(6)
+          supabase.from('gallery').select('*').order('created_at', { ascending: false }).limit(6),
+          supabase.from('holidays').select('*').eq('published', true).order('date', { ascending: true })
         ]);
         
         if (noticesRes.data) setNotices(noticesRes.data);
         if (eventsRes.data) setEvents(eventsRes.data);
         if (galleryRes.data) setGallery(galleryRes.data);
+        if (holidaysRes.data) {
+          const now = new Date();
+          const currentMonthHolidays = holidaysRes.data.filter(h => {
+             const d = new Date(h.date);
+             return d.getUTCMonth() === now.getUTCMonth() && d.getUTCFullYear() === now.getUTCFullYear();
+          });
+          setHolidays(currentMonthHolidays);
+        }
       } catch (error) {
         console.error("Error fetching home data:", error);
       } finally {
@@ -251,6 +261,54 @@ const Home = () => {
               })
             ) : (
               <div className="col-span-full py-12 text-center text-gray-mid">No upcoming events right now.</div>
+            )}
+          </div>
+        </div>
+      </section>
+      
+      {/* Holiday Highlights */}
+      <section className="py-24 bg-white border-t border-gray-light">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
+            <SectionHeader 
+              className="!mb-0"
+              label="Calendar" 
+              heading={<><CalendarDays className="inline-block mr-3 text-blue-primary relative -top-1" size={32} />This Month's Holidays</>} 
+              subtext="Glimpse of holidays and programmes for the current month."
+            />
+            <Link to="/holidays" className="btn-secondary bg-blue-primary border-transparent hover:bg-blue-dark shrink-0">
+              View Full Calendar →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {loading ? (
+              Array(4).fill(0).map((_, i) => <div key={i} className="h-32 bg-gray-100 animate-pulse rounded-2xl"></div>)
+            ) : holidays.length > 0 ? (
+              holidays.map((holiday, idx) => (
+                <div key={holiday.id} className={clsx(
+                  "p-6 rounded-2xl border transition-all flex flex-col justify-center items-center text-center",
+                  holiday.type === 'Holiday' ? 'bg-red-50 border-red-100' : 'bg-emerald-50 border-emerald-100'
+                )}>
+                  <div className={clsx(
+                    "w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg mb-3 shadow-md",
+                    holiday.type === 'Holiday' ? 'bg-red-500 text-white' : 'bg-emerald-500 text-white'
+                  )}>
+                    {new Date(holiday.date).getUTCDate()}
+                  </div>
+                  <h4 className="font-bold text-blue-dark leading-tight mb-1">{holiday.title}</h4>
+                  <p className={clsx(
+                    "text-[10px] font-black uppercase tracking-widest",
+                    holiday.type === 'Holiday' ? 'text-red-500' : 'text-emerald-600'
+                  )}>{holiday.type}</p>
+                </div>
+              ))
+            ) : (
+              <div className="col-span-full py-12 flex flex-col items-center justify-center border-2 border-dashed border-gray-light bg-off-white rounded-2xl">
+                <CalendarDays className="text-gray-300 mb-4" size={48} />
+                <p className="text-gray-mid font-bold uppercase tracking-widest text-sm">No holidays remaining this month</p>
+                <Link to="/holidays" className="mt-4 text-blue-primary font-bold hover:underline">Check full calendar</Link>
+              </div>
             )}
           </div>
         </div>
