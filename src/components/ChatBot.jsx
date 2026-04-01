@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, GraduationCap } from 'lucide-react';
 import clsx from 'clsx';
+import { supabase } from '../lib/supabase';
 import { SYSTEM_PROMPT, STARTER_QUESTIONS } from '../constants/chatbot';
 
 const Chatbot = () => {
@@ -11,6 +12,8 @@ const Chatbot = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showStarters, setShowStarters] = useState(true);
+  const [schoolContext, setSchoolContext] = useState('');
+  const [isFetchingContext, setIsFetchingContext] = useState(false);
   
   const messagesEndRef = useRef(null);
   
@@ -21,6 +24,68 @@ const Chatbot = () => {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isLoading]);
+
+  // Fetch school data for AI context when opened
+  useEffect(() => {
+    if (isOpen && !schoolContext) {
+      const stripHtml = (html) => {
+        const tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
+      };
+
+      const fetchContext = async () => {
+        setIsFetchingContext(true);
+        try {
+          const now = new Date();
+          const firstDay = new Date(now.getFullYear(), now.getUTCMonth(), 1).toISOString();
+          
+          const [noticesRes, eventsRes, holidaysRes] = await Promise.all([
+            supabase.from('notices').select('date, title, description').eq('published', true).order('date', { ascending: false }).limit(5),
+            supabase.from('events').select('date, title, description, category').order('date', { ascending: true }).limit(5),
+            supabase.from('holidays').select('date, title, type').eq('published', true).gte('date', firstDay).order('date', { ascending: true })
+          ]);
+
+          let contextString = "\n\nLATEST NOTICES:\n";
+          if (noticesRes.data?.length) {
+            noticesRes.data.forEach(n => {
+              const cleanDesc = n.description ? stripHtml(n.description).substring(0, 200) : "";
+              contextString += `- [${n.date}] ${n.title}: ${cleanDesc}...\n`;
+            });
+          } else {
+            contextString += "No recent notices.\n";
+          }
+
+          contextString += "\nUPCOMING EVENTS:\n";
+          if (eventsRes.data?.length) {
+            eventsRes.data.forEach(e => {
+              const cleanDesc = e.description ? stripHtml(e.description).substring(0, 150) : "";
+              contextString += `- [${e.date}] ${e.title} (${e.category}): ${cleanDesc}...\n`;
+            });
+          } else {
+            contextString += "No upcoming events scheduled.\n";
+          }
+
+          contextString += "\nHOLIDAYS & PROGRAMMES (This Month onwards):\n";
+          if (holidaysRes.data?.length) {
+            holidaysRes.data.forEach(h => {
+              contextString += `- [${h.date}] ${h.title} (${h.type})\n`;
+            });
+          } else {
+            contextString += "No holidays currently listed.\n";
+          }
+
+          setSchoolContext(contextString);
+        } catch (error) {
+          console.error("Error fetching school context:", error);
+        } finally {
+          setIsFetchingContext(false);
+        }
+      };
+
+      fetchContext();
+    }
+  }, [isOpen, schoolContext]);
 
   const handleClose = () => {
     setIsOpen(false);
@@ -51,8 +116,10 @@ const Chatbot = () => {
       }
 
       // Convert format for the API call
+      const fullSystemPrompt = SYSTEM_PROMPT + (schoolContext ? `\n\n${schoolContext}` : "");
+      
       const apiMessages = [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: fullSystemPrompt },
         ...messages.map(m => ({ role: m.role, content: m.content })),
         { role: 'user', content: text }
       ];
