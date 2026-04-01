@@ -14,9 +14,15 @@ const Gallery = () => {
 
   const filteredPhotos = filter === 'All' ? galleryData : galleryData?.filter(p => p.category === filter);
   
+  const getImageUrl = (url) => {
+    if (!url) return '/gallery.jpg';
+    if (url.startsWith('http')) return url;
+    return `/${url}`;
+  };
+
   // Format for lightbox
   const slides = filteredPhotos ? filteredPhotos.map(p => ({
-    src: `/${p.image_url}`,
+    src: getImageUrl(p.image_url),
     title: p.title,
     description: p.category
   })) : [];
@@ -66,7 +72,7 @@ const Gallery = () => {
                 style={{ animationDelay: `${i * 50}ms` }}
               >
                 <img 
-                  src={`/${photo.image_url}`} 
+                  src={getImageUrl(photo.image_url)} 
                   alt={photo.title} 
                   loading="lazy"
                   className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-700" 

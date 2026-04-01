@@ -40,6 +40,12 @@ const Notices = () => {
 
   const filteredNotices = filter === 'All' ? notices : notices.filter(n => n.category === filter);
 
+  const getImageUrl = (url) => {
+    if (!url) return null;
+    if (url.startsWith('http')) return url;
+    return `/${url}`;
+  };
+
   return (
     <div className="w-full bg-off-white min-h-screen">
       <section className="relative w-full h-[320px] flex items-center justify-center">
@@ -113,7 +119,12 @@ const Notices = () => {
                    {/* Title / Desc */}
                    <div className="flex-1 pr-6 mb-4 md:mb-0">
                      <h3 className="font-bold text-blue-dark text-[17px] mb-1 leading-tight group-hover:text-blue-primary transition-colors">{notice.title}</h3>
-                     {notice.description && <p className="text-sm text-gray-text leading-relaxed line-clamp-2 mt-2">{notice.description}</p>}
+                     {notice.description && (
+                       <div 
+                         className="text-sm text-gray-text leading-relaxed line-clamp-2 mt-2 prose prose-sm max-w-none"
+                         dangerouslySetInnerHTML={{ __html: notice.description }} 
+                       />
+                     )}
                    </div>
                    
                    {/* Action */}

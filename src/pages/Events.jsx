@@ -18,7 +18,7 @@ const Events = () => {
     try {
       const { data, error } = await supabase
         .from('events')
-        .select('*')
+        .select('*, event_photos(id, image_url)')
         .order('date', { ascending: false });
       
       if (error) throw error;
@@ -47,10 +47,13 @@ const Events = () => {
     return event.category === filter;
   });
 
-  const formatDate = (dateString, full = true) => {
-    const d = new Date(dateString);
-    if (!full) return { day: d.getDate(), month: d.toLocaleDateString('en-US', { month: 'short' }) };
     return d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  };
+
+  const getImageUrl = (url) => {
+    if (!url) return '/event.jpg';
+    if (url.startsWith('http')) return url;
+    return `/${url}`;
   };
 
   return (
@@ -97,12 +100,18 @@ const Events = () => {
             {filteredEvents.map((event, idx) => (
               <Card key={event.id} delay={idx * 50} className="flex flex-col p-0 overflow-hidden group">
                 {/* Event Image Cover */}
-                <div className="relative h-48 w-full bg-gray-200 overflow-hidden">
                   <img 
-                    src={event.cover_image_url || '/event.jpg'} 
+                    src={getImageUrl(event.cover_image_url)} 
                     alt={event.title} 
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  {/* Photo Count Badge */}
+                  {event.event_photos?.length > 0 && (
+                    <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1">
+                      <ImageIcon size={12} className="text-yellow" />
+                      +{event.event_photos.length} Photos
+                    </div>
+                  )}
                   {/* Date Badge */}
                   <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm shadow-lg rounded-lg border border-white/20 text-center flex flex-col items-center justify-center min-w-[3.5rem] p-1">
                     <span className="text-red font-bold text-sm uppercase leading-none">{formatDate(event.date, false).month}</span>
@@ -116,9 +125,12 @@ const Events = () => {
                   <h3 className="font-display font-bold text-xl text-blue-dark mb-4 group-hover:text-blue-primary transition-colors line-clamp-2 leading-snug">
                     {event.title}
                   </h3>
-                  <p className="text-gray-text text-sm mb-6 flex-1 line-clamp-3">
-                    {event.description}
-                  </p>
+                  {event.description && (
+                    <div 
+                      className="text-gray-text text-sm mb-6 flex-1 line-clamp-3 prose prose-sm max-w-none"
+                      dangerouslySetInnerHTML={{ __html: event.description }} 
+                    />
+                  )}
                   
                   <div className="border-t border-gray-100 pt-4 mt-auto">
                     <div className="flex items-center text-sm text-gray-mid gap-2 font-medium">
