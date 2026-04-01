@@ -47,7 +47,16 @@ const Events = () => {
     return event.category === filter;
   });
 
-    return d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const formatDate = (dateString, long = true) => {
+    const d = new Date(dateString);
+    if (long) {
+      return d.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+    return {
+      day: d.getDate(),
+      month: d.toLocaleString('default', { month: 'short' }),
+      year: d.getFullYear()
+    };
   };
 
   const getImageUrl = (url) => {
@@ -100,7 +109,7 @@ const Events = () => {
             {filteredEvents.map((event, idx) => (
               <Card key={event.id} delay={idx * 50} className="flex flex-col p-0 overflow-hidden group">
                 {/* Event Image Cover */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-64 overflow-hidden">
                   <img 
                     src={getImageUrl(event.cover_image_url)} 
                     alt={event.title} 
@@ -109,7 +118,7 @@ const Events = () => {
                   {/* Photo Count Badge */}
                   {event.event_photos?.length > 0 && (
                     <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1">
-                      <ImageIcon size={12} className="text-yellow" />
+                      <Calendar size={12} className="text-yellow" />
                       +{event.event_photos.length} Photos
                     </div>
                   )}
@@ -122,7 +131,9 @@ const Events = () => {
                 
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <Badge category={event.category} className="self-start mb-3" />
+                  <div className="flex justify-between items-start mb-3">
+                    <Badge className="bg-blue-primary/10 text-blue-primary border-none">{event.category}</Badge>
+                  </div>
                   <h3 className="font-display font-bold text-xl text-blue-dark mb-4 group-hover:text-blue-primary transition-colors line-clamp-2 leading-snug">
                     {event.title}
                   </h3>
