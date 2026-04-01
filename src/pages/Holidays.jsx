@@ -7,6 +7,7 @@ import { Calendar, CalendarCheck, Info } from 'lucide-react';
 import clsx from 'clsx';
 
 const MONTHS = [
+  { name: 'March', year: 2026 },
   { name: 'April', year: 2026 },
   { name: 'May', year: 2026 },
   { name: 'June', year: 2026 },
