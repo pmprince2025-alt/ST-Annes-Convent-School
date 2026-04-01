@@ -100,6 +100,7 @@ const Events = () => {
             {filteredEvents.map((event, idx) => (
               <Card key={event.id} delay={idx * 50} className="flex flex-col p-0 overflow-hidden group">
                 {/* Event Image Cover */}
+                <div className="relative h-48 overflow-hidden">
                   <img 
                     src={getImageUrl(event.cover_image_url)} 
                     alt={event.title} 
