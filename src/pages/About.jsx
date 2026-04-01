@@ -35,7 +35,7 @@ const About = () => {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-24 bg-off-white">
+      <section className="pt-16 pb-8 bg-off-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-yellow animate-on-scroll translate-y-0 opacity-100">
             <h2 className="font-display font-bold text-3xl text-blue-dark mb-6">Our Vision</h2>
@@ -68,7 +68,7 @@ const About = () => {
       </section>
 
       {/* Principal's Message */}
-      <section className="py-24 bg-white border-y border-gray-light">
+      <section className="pt-8 pb-24 bg-white border-y border-gray-light">
         <div className="max-w-5xl mx-auto px-6">
           <SectionHeader label="Leadership" heading="Principal's Message" className="text-center mx-auto" flexCenter />
           
