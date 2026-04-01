@@ -37,13 +37,13 @@ const About = () => {
       {/* Vision & Mission */}
       <section className="pt-16 pb-8 bg-off-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-yellow animate-on-scroll translate-y-0 opacity-100">
+          <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-yellow animate-fade-up">
             <h2 className="font-display font-bold text-3xl text-blue-dark mb-6">Our Vision</h2>
             <p className="text-gray-text text-lg leading-relaxed">
               "ST Anne's Convent School is a nurturing ground for the holistic growth and development of young children to make an effective contribution to the nation for societal change and dynamic transformation."
             </p>
           </div>
-          <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-blue-primary animate-on-scroll translate-y-0 opacity-100" style={{ transitionDelay: '100ms' }}>
+          <div className="bg-white p-10 rounded-[10px] shadow-sm border-t-4 border-blue-primary animate-fade-up" style={{ animationDelay: '100ms' }}>
             <h2 className="font-display font-bold text-3xl text-blue-dark mb-6">Our Mission</h2>
             <ul className="space-y-4 text-gray-text">
               <li className="flex items-start gap-3">
