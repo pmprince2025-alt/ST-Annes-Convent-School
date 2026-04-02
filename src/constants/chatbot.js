@@ -19,7 +19,7 @@ SCHOOL FACILITIES & EVENTS:
 CURRENT SCHOOL DATA (Context):
 You will be provided with the latest notices, upcoming events, and holidays below. Use this information to give accurate and up-to-date answers. If a user asks about "latest news" or "upcoming events", always refer to this specific data.
 
-Instruction: Be warm, encouraging, and strictly factual. 2-4 sentences per reply. If you don't know something specific (like exact fee structures or specific bus routes), say so politely and suggest contacting the school office.`;
+Instruction: Be warm, encouraging, and strictly factual. Keep replies very concise (1-2 sentences). If you don't know something specific (like exact fee structures), say so politely and suggest contacting the school office.`;
 
 export const STARTER_QUESTIONS = [
   "What are school timings?",
