@@ -153,7 +153,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-display font-medium text-lg mb-1">Our Location</h4>
-                    <p className="text-gray-300 leading-relaxed">ST Anne's Convent School,<br/>Sonepur, Odisha, India.</p>
+                    <p className="text-gray-300 leading-relaxed">ST. Anne's Convent School,<br/>Sonepur, Odisha, India.</p>
                   </div>
                 </div>
 

@@ -83,13 +83,13 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative w-full h-[100dvh] min-h-[600px] flex flex-col justify-center items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/building.jpg" alt="ST Anne's Convent School" className="w-full h-full object-cover" />
+          <img src="/building.jpg" alt="ST. Anne's Convent School" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-[#0A2744]/60"></div>
         </div>
         
         <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center mt-16">
           <h1 className="font-display font-extrabold text-white text-[48px] md:text-[72px] leading-tight mb-4 animate-fade-up" style={{ animationDelay: '200ms' }}>
-            ST Anne's Convent School
+            ST. Anne's Convent School
           </h1>
           <p className="font-body text-yellow text-xl md:text-2xl mb-8 animate-fade-up" style={{ animationDelay: '400ms' }}>
             Sonepur, Odisha
@@ -169,8 +169,8 @@ const Home = () => {
           <div className={clsx("animate-on-scroll", aboutInView && "in-view")} style={{ transitionDelay: '200ms' }}>
             <SectionHeader 
               label="Our School" 
-              heading="About ST Anne's" 
-              subtext="Welcome to ST Anne's Convent School. We strive to provide a nurturing environment where every child can explore their potential, experiment with new ideas, and excel in all their endeavors."
+              heading="About ST. Anne's" 
+              subtext="Welcome to ST. Anne's Convent School. We strive to provide a nurturing environment where every child can explore their potential, experiment with new ideas, and excel in all their endeavors."
             />
             <Link to="/about" className="inline-flex items-center gap-2 text-blue-primary font-semibold hover:text-blue-dark hover:gap-3 transition-all">
               Learn More <ArrowRight size={20} />
@@ -320,7 +320,7 @@ const Home = () => {
           <SectionHeader 
             label="Visuals" 
             heading={<><ImageIcon className="inline-block mr-3 text-blue-primary relative -top-1" size={32} />Gallery Preview</>} 
-            subtext="Glimpses of life at ST Anne's."
+            subtext="Glimpses of life at ST. Anne's."
           />
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6 mb-12">

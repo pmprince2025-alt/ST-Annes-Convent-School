@@ -11,7 +11,7 @@ const About = () => {
     name: 'Sr. Cynthia',
     designation: 'Principal',
     photo_url: 'logo.png',
-    message: "Welcome to ST Anne's Convent School. We strive to provide a nurturing environment where every child can explore their potential, experiment with new ideas, and excel in all their endeavors."
+    message: "Welcome to ST. Anne's Convent School. We strive to provide a nurturing environment where every child can explore their potential, experiment with new ideas, and excel in all their endeavors."
   };
 
   const values = [
@@ -40,7 +40,7 @@ const About = () => {
           <div className="bg-white p-6 sm:p-10 rounded-xl sm:rounded-[10px] shadow-sm border-t-4 border-yellow animate-fade-up">
             <h2 className="font-display font-bold text-3xl text-blue-dark mb-6">Our Vision</h2>
             <p className="text-gray-text text-lg leading-relaxed">
-              "ST Anne's Convent School is a nurturing ground for the holistic growth and development of young children to make an effective contribution to the nation for societal change and dynamic transformation."
+              "ST. Anne's Convent School is a nurturing ground for the holistic growth and development of young children to make an effective contribution to the nation for societal change and dynamic transformation."
             </p>
           </div>
           <div className="bg-white p-6 sm:p-10 rounded-xl sm:rounded-[10px] shadow-sm border-t-4 border-blue-primary animate-fade-up" style={{ animationDelay: '100ms' }}>

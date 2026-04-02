@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-3 group">
             <img src="/logo.png" alt="School Logo" className="w-10 h-10 rounded-full bg-white p-0.5 object-cover" />
             <span className="font-display font-semibold text-lg text-white hidden sm:block">
-              ST Anne's Convent School
+              ST. Anne's Convent School
             </span>
           </Link>
 
@@ -95,7 +95,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between mb-16">
             <div className="flex items-center gap-3">
               <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full bg-white p-0.5" />
-              <span className="font-display font-bold text-white tracking-tight">ST Anne's</span>
+              <span className="font-display font-bold text-white tracking-tight">ST. Anne's</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}

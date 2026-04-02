@@ -11,11 +11,11 @@ const Footer = () => {
         <div>
           <div className="flex items-center gap-3 mb-4">
             <img src="/logo.png" alt="Logo" className="w-12 h-12 rounded-full bg-white p-0.5 object-cover" />
-            <h3 className="font-display font-bold text-xl">ST Anne's Convent</h3>
+            <h3 className="font-display font-bold text-xl">ST. Anne's Convent</h3>
           </div>
           <p className="font-mono text-yellow text-sm mb-4">✦ Explore · Experiment · Excel ✦</p>
           <p className="text-gray-300 text-sm leading-relaxed max-w-sm">
-            Welcome to ST Anne's Convent School. We strive to provide a nurturing environment where every child can explore their potential, experiment with new ideas, and excel in all their endeavors.
+            Welcome to ST. Anne's Convent School. We strive to provide a nurturing environment where every child can explore their potential, experiment with new ideas, and excel in all their endeavors.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ const Footer = () => {
           <ul className="space-y-4 text-gray-300 text-sm">
             <li className="flex items-start gap-3">
               <MapPin size={18} className="text-yellow shrink-0 mt-0.5" />
-              <span>ST Anne's Convent School,<br />Sonepur, Odisha</span>
+              <span>ST. Anne's Convent School,<br />Sonepur, Odisha</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-yellow shrink-0" />
@@ -55,7 +55,7 @@ const Footer = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 border-t border-white/10 pt-6 text-center text-gray-400 text-[10px] sm:text-xs">
-        © {new Date().getFullYear()} ST Anne's Convent School, Sonepur. All rights reserved.
+        © {new Date().getFullYear()} ST. Anne's Convent School, Sonepur. All rights reserved.
       </div>
     </footer>
   );

@@ -7,7 +7,7 @@ import { SYSTEM_PROMPT, STARTER_QUESTIONS } from '../constants/chatbot';
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: "Hi! I'm Anne, the ST Anne's Convent School assistant. How can I help you today?", timestamp: new Date() }
+    { role: 'assistant', content: "Hi! I'm Anne, the ST. Anne's Convent School assistant. How can I help you today?", timestamp: new Date() }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -91,7 +91,7 @@ const Chatbot = () => {
     setIsOpen(false);
     // Reset state after closing
     setTimeout(() => {
-      setMessages([{ role: 'assistant', content: "Hi! I'm Anne, the ST Anne's Convent School assistant. How can I help you today?", timestamp: new Date() }]);
+      setMessages([{ role: 'assistant', content: "Hi! I'm Anne, the ST. Anne's Convent School assistant. How can I help you today?", timestamp: new Date() }]);
       setShowStarters(true);
       setInput('');
       setIsLoading(false);
