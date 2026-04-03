@@ -23,7 +23,15 @@ function App() {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-grow">
-          <React.Suspense fallback={<div className="h-screen flex items-center justify-center"><div className="w-8 h-8 rounded-full border-4 border-yellow border-t-transparent animate-spin"></div></div>}>
+          <React.Suspense fallback={
+            <div className="h-screen flex flex-col items-center justify-center bg-blue-deeper">
+              <div className="w-12 h-12 rounded-full border-[4px] border-yellow border-t-transparent animate-spin mb-6 shadow-2xl shadow-yellow/20"></div>
+              <div className="text-center">
+                <span className="font-display font-black text-white text-[10px] uppercase tracking-[0.5em] block mb-1">ST. Anne's</span>
+                <span className="font-mono text-yellow/40 text-[8px] uppercase tracking-[0.3em]">Convent School</span>
+              </div>
+            </div>
+          }>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

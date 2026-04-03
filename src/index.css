@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --color-blue-primary: #1B7FD4;
-  --color-blue-dark: #0F3D6E;
-  --color-blue-deeper: #0A2744;
-  --color-blue-light: #E8F4FD;
-  --color-yellow: #F5C200;
-  --color-yellow-dark: #D4A800;
-  --color-red: #CC2222;
+  --color-blue-primary: #2563EB;
+  --color-blue-dark: #1E3A8A;
+  --color-blue-deeper: #0F172A;
+  --color-blue-light: #F0F7FF;
+  --color-yellow: #F59E0B;
+  --color-yellow-dark: #D97706;
+  --color-red: #EF4444;
   --color-white: #FFFFFF;
-  --color-off-white: #F8F9FA;
-  --color-gray-light: #E9ECEF;
-  --color-gray-mid: #ADB5BD;
-  --color-gray-text: #495057;
-  --color-dark: #1A1A2E;
-  --color-success: #198754;
-  --color-warning: #F5C200;
-  --color-error: #DC3545;
+  --color-off-white: #F8FAFC;
+  --color-gray-light: #F1F5F9;
+  --color-gray-mid: #94A3B8;
+  --color-gray-text: #334155;
+  --color-dark: #020617;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
 
   --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
   --font-mono: 'Space Mono', 'Courier New', monospace;
 }
 
@@ -30,88 +30,133 @@ body {
   color: var(--color-gray-text);
   background-color: var(--color-off-white);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--color-blue-dark);
+  letter-spacing: -0.02em;
 }
 
 @layer components {
   /* Buttons */
   .btn-primary {
-    @apply bg-yellow text-blue-deeper font-semibold px-7 py-3 rounded-md transition-all duration-200;
+    @apply bg-yellow text-blue-deeper font-bold px-8 py-3.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-yellow/20;
     font-family: var(--font-body);
   }
   .btn-primary:hover {
-    @apply bg-yellow-dark -translate-y-px;
+    @apply bg-yellow-dark -translate-y-0.5;
   }
 
   .btn-secondary {
-    @apply bg-transparent text-white border-2 border-white font-semibold px-7 py-2.5 rounded-md transition-all duration-200;
+    @apply bg-white/5 backdrop-blur-md text-white border border-white/20 font-bold px-8 py-3 rounded-xl transition-all duration-300;
     font-family: var(--font-body);
   }
   .btn-secondary:hover {
-    @apply bg-white/10;
+    @apply bg-white/20 border-white/40 -translate-y-0.5;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  .glass-dark {
+    @apply bg-blue-deeper/80 backdrop-blur-lg border border-white/10 shadow-2xl;
   }
 
   /* Badges */
   .badge {
-    @apply font-semibold text-xs px-2.5 py-1 rounded-full uppercase tracking-wider inline-block;
+    @apply font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-[0.1em] inline-block shadow-sm;
     font-family: var(--font-body);
   }
-  .badge-academic { @apply bg-blue-100 text-blue-800; }
-  .badge-exam { @apply bg-red-100 text-red-800; }
-  .badge-holiday { @apply bg-green-100 text-green-800; }
-  .badge-general { @apply bg-gray-100 text-gray-700; }
-  .badge-cultural { @apply bg-purple-100 text-purple-800; }
-  .badge-sports { @apply bg-yellow-100 text-yellow-800; }
+  .badge-academic { @apply bg-blue-light text-blue-primary; }
+  .badge-exam { @apply bg-red/10 text-red; }
+  .badge-holiday { @apply bg-emerald-100 text-emerald-700; }
+  .badge-general { @apply bg-gray-light text-gray-mid; }
+  .badge-cultural { @apply bg-purple-100 text-purple-700; }
+  .badge-sports { @apply bg-amber-100 text-amber-700; }
 
   /* Section Styles */
   .section-label {
-    @apply font-mono text-[10px] sm:text-xs uppercase text-blue-primary mb-2 sm:mb-3 block;
+    @apply font-mono text-[10px] sm:text-xs uppercase text-blue-primary mb-3 block tracking-[0.2em] font-bold;
   }
   .section-heading {
-    @apply text-3xl sm:text-4xl font-bold mb-4 lg:mb-6 leading-tight text-blue-dark;
+    @apply text-3xl sm:text-5xl font-bold mb-6 lg:mb-8 leading-[1.1] text-blue-dark;
   }
   .section-subtext {
-    @apply text-base sm:text-lg text-gray-text max-w-2xl mb-8 sm:mb-12;
+    @apply text-base sm:text-lg text-gray-text/80 max-w-2xl mb-10 sm:mb-16 leading-relaxed;
   }
 }
 
 /* Responsive Padding Utilities */
 @layer utilities {
   .section-padding {
-    @apply py-12 sm:py-24;
+    @apply py-12 sm:py-20 lg:py-24;
   }
 }
 
 /* Animations */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
 .animate-fade-up {
-  animation: fadeUp 0.7s ease both;
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .chatbot-panel {
-  animation: slideUp 0.3s ease both;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
 
 .animate-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(15px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animate-on-scroll.in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (min-width: 768px) {
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .animate-fade-up {
+    animation-duration: 0.8s;
+  }
+
+  .chatbot-panel {
+    animation-duration: 0.4s;
+  }
+
+  .animate-on-scroll {
+    transform: translateY(30px);
+    transition-duration: 0.8s;
+  }
 }

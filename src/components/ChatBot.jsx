@@ -175,7 +175,7 @@ const Chatbot = () => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-yellow rounded-full flex items-center justify-center shadow-lg text-blue-deeper group animate-[pulse_2s_infinite]"
+          className="fixed bottom-6 right-6 z-[99] w-14 h-14 bg-yellow rounded-full flex items-center justify-center shadow-lg text-blue-deeper group animate-[pulse_2s_infinite]"
         >
           <MessageCircle size={24} className="group-hover:scale-110 transition-transform" />
         </button>
@@ -183,7 +183,7 @@ const Chatbot = () => {
 
       {/* Chat Panel */}
       {isOpen && (
-        <div className="fixed sm:bottom-6 sm:right-6 bottom-0 right-0 z-50 w-full sm:w-[360px] h-[100dvh] sm:h-[520px] bg-white sm:rounded-tl-[16px] sm:rounded-tr-[16px] sm:rounded-bl-[4px] rounded-none shadow-[0_20px_60px_rgba(10,39,68,0.25)] flex flex-col chatbot-panel overflow-hidden">
+        <div className="fixed sm:bottom-6 sm:right-6 bottom-0 right-0 z-[99] w-full sm:w-[360px] h-[100dvh] sm:h-[520px] bg-white sm:rounded-tl-[16px] sm:rounded-tr-[16px] sm:rounded-bl-[4px] rounded-none shadow-[0_20px_60px_rgba(10,39,68,0.25)] flex flex-col chatbot-panel overflow-hidden">
           {/* Header */}
           <div className="h-[72px] bg-gradient-to-br from-blue-primary to-blue-dark flex items-center justify-between px-4 text-white shrink-0">
             <div className="flex items-center gap-3">

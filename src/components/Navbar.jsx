@@ -35,37 +35,48 @@ const Navbar = () => {
     <>
       <nav
         className={clsx(
-          'fixed w-full z-50 transition-all duration-300',
+          'fixed w-full z-50 transition-all duration-500',
           scrolled || !isHome
-            ? 'bg-blue-dark shadow-lg py-3'
-            : 'bg-transparent py-5'
+            ? 'glass py-3'
+            : 'bg-transparent py-6'
         )}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <Link to="/" className="flex items-center gap-3 group">
-            <img src="/logo.png" alt="School Logo" className="w-10 h-10 rounded-full bg-white p-0.5 object-cover" />
-            <span className="font-display font-semibold text-lg text-white hidden sm:block">
-              ST. Anne's Convent School
+            <div className="relative">
+              <img src="/logo.png" alt="School Logo" className="w-11 h-11 rounded-full bg-white p-0.5 object-cover shadow-lg group-hover:scale-110 transition-transform duration-500" />
+              <div className="absolute inset-0 rounded-full border border-white/20"></div>
+            </div>
+            <span className={clsx(
+              "font-display font-bold text-xl tracking-tight transition-colors duration-300",
+              scrolled || !isHome ? "text-blue-dark" : "text-white"
+            )}>
+              ST. Anne's <span className={clsx(
+                "hidden lg:inline transition-colors duration-300",
+                scrolled || !isHome ? "text-blue-primary" : "text-yellow"
+              )}>Convent School</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10">
             {links.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
                 className={clsx(
-                  'text-[15px] font-medium tracking-wide transition-colors relative',
+                  'text-[14px] font-bold tracking-widest uppercase transition-all duration-300 relative group/link',
                   location.pathname === link.path
-                    ? 'text-yellow'
-                    : 'text-white hover:text-yellow'
+                    ? (scrolled || !isHome ? 'text-blue-primary' : 'text-yellow')
+                    : (scrolled || !isHome ? 'text-gray-text hover:text-blue-primary' : 'text-white/90 hover:text-white')
                 )}
               >
                 {link.name}
-                {location.pathname === link.path && (
-                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-yellow rounded-full" />
-                )}
+                <span className={clsx(
+                  "absolute -bottom-1.5 left-0 h-[2px] transition-all duration-300 rounded-full",
+                  location.pathname === link.path ? "w-full" : "w-0 group-hover/link:w-full",
+                  scrolled || !isHome ? "bg-blue-primary" : "bg-yellow"
+                )} />
               </Link>
             ))}
           </div>
@@ -73,9 +84,12 @@ const Navbar = () => {
           {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden text-white hover:text-yellow transition-colors"
+            className={clsx(
+              "md:hidden w-10 h-10 flex items-center justify-center rounded-xl transition-all active:scale-95",
+              scrolled || !isHome ? "bg-blue-primary/10 text-blue-primary" : "bg-white/10 text-white backdrop-blur-md"
+            )}
           >
-            <Menu size={28} />
+            <Menu size={24} />
           </button>
         </div>
       </nav>
@@ -83,25 +97,28 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={clsx(
-          'fixed inset-0 bg-blue-dark z-[60] flex flex-col transition-all duration-500 ease-in-out',
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          'fixed inset-0 z-[60] flex flex-col transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
+          isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
+        {/* Background Overlay */}
+        <div className="absolute inset-0 bg-blue-deeper/98 backdrop-blur-2xl" />
+        
         {/* Background Decorative Element */}
-        <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-blue-primary/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-[-5%] left-[-5%] w-80 h-80 bg-yellow/5 rounded-full blur-3xl" />
+        <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-primary/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-yellow/5 rounded-full blur-[100px]" />
 
-        <div className="relative flex-1 flex flex-col px-8 py-12">
-          <div className="flex items-center justify-between mb-16">
+        <div className="relative flex-1 flex flex-col px-8 py-10">
+          <div className="flex items-center justify-between mb-12">
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="Logo" className="w-8 h-8 rounded-full bg-white p-0.5" />
-              <span className="font-display font-bold text-white tracking-tight">ST. Anne's</span>
+              <img src="/logo.png" alt="Logo" className="w-10 h-10 rounded-full bg-white p-0.5" />
+              <span className="font-display font-black text-2xl text-white tracking-tight">ST. Anne's</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-12 h-12 flex items-center justify-center text-white bg-white/10 rounded-full border border-white/20 hover:bg-white/20 transition-all active:scale-90"
+              className="w-12 h-12 flex items-center justify-center text-white bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-all active:scale-90"
             >
-              <X size={24} />
+              <X size={26} />
             </button>
           </div>
 

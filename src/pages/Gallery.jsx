@@ -30,71 +30,99 @@ const Gallery = () => {
   return (
     <div className="w-full bg-off-white min-h-screen">
       {/* Page Hero */}
-      <section className="relative w-full h-[260px] sm:h-[320px] flex items-center justify-center">
+      <section className="relative w-full h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src="/tree-plantation.jpg" alt="Gallery" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-[#0A2744]/70"></div>
+          <img src="/tree-plantation.jpg" alt="Gallery" className="w-full h-full object-cover scale-110 animate-float" />
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-deeper/90 via-blue-deeper/40 to-blue-deeper/90 opacity-90"></div>
+          <div className="absolute inset-0 bg-blue-primary/10 mix-blend-overlay"></div>
         </div>
-        <h1 className="relative z-10 font-display font-bold text-white text-[36px] sm:text-[48px] animate-fade-up px-6 text-center">Photo Gallery</h1>
+        <div className="relative z-10 text-center px-6">
+          <div className="inline-block bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full mb-8 animate-fade-up">
+            <span className="font-mono font-bold text-yellow text-[10px] uppercase tracking-[0.3em]">Capturing Memories</span>
+          </div>
+          <h1 className="font-display font-black text-white text-[56px] md:text-[72px] lg:text-[84px] animate-fade-up tracking-tighter leading-none mb-6">
+            Visual <span className="text-yellow">Gallery</span>
+          </h1>
+          <p className="text-white/60 text-lg md:text-xl font-medium animate-fade-up max-w-2xl mx-auto leading-relaxed" style={{ animationDelay: '200ms' }}>
+            A glimpse into the daily life, achievements, and vibrant environment at ST. Anne's Convent School.
+          </p>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2"></div>
       </section>
 
-      <section className="section-padding max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Filter Tabs */}
-        <div className="flex gap-2 mb-8 sm:mb-12 overflow-x-auto pb-2 scrollbar-hide justify-start sm:justify-center">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={clsx(
-                "px-5 sm:px-6 py-2.5 rounded-full text-sm font-semibold transition-all shadow-sm whitespace-nowrap",
-                filter === cat 
-                  ? "bg-blue-primary text-white scale-105 shadow-md border border-transparent" 
-                  : "bg-white text-gray-text border border-gray-lighter hover:border-blue-primary hover:text-blue-dark"
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Masonry Grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 lg:gap-6 space-y-4 lg:space-y-6">
-          {loading ? (
-             Array(6).fill(0).map((_, i) => (
-               <div key={i} className={clsx("w-full bg-gray-200 animate-pulse rounded-2xl", i % 2 === 0 ? "h-64" : "h-96")}></div>
-             ))
-          ) : filteredPhotos?.length > 0 ? (
-            filteredPhotos.map((photo, i) => (
-              <div 
-                key={photo.id} 
-                onClick={() => setIndex(i)}
-                className="group relative w-full rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 break-inside-avoid cursor-pointer animate-fade-up border border-gray-200"
-                style={{ animationDelay: `${i * 50}ms` }}
+      <section className="section-padding bg-off-white relative isolate overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Filter Tabs */}
+          <div className="flex flex-wrap gap-3 mb-16 justify-center">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={clsx(
+                  "px-8 py-3.5 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-300",
+                  filter === cat 
+                    ? "bg-blue-primary text-white shadow-xl shadow-blue-primary/20 scale-105" 
+                    : "glass text-gray-text hover:bg-white hover:text-blue-primary border-white/50"
+                )}
               >
-                <img 
-                  src={getImageUrl(photo.image_url)} 
-                  alt={photo.title} 
-                  loading="lazy"
-                  className="w-full h-auto object-cover group-hover:scale-[1.03] transition-transform duration-700" 
-                />
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-deeper/90 via-blue-deeper/20 to-transparent opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-6">
-                  <span className="text-yellow text-xs font-bold uppercase tracking-widest mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
-                    {photo.category}
-                  </span>
-                  <h3 className="text-white font-display font-medium text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out delay-75">
-                    {photo.title}
-                  </h3>
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Masonry Grid */}
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-8">
+            {loading ? (
+               Array(6).fill(0).map((_, i) => (
+                 <div key={i} className={clsx("w-full glass animate-pulse rounded-[2.5rem]", i % 2 === 0 ? "h-64" : "h-96")}></div>
+               ))
+            ) : filteredPhotos?.length > 0 ? (
+              filteredPhotos.map((photo, i) => (
+                <div 
+                  key={photo.id} 
+                  onClick={() => setIndex(i)}
+                  className="group relative w-full rounded-[2.5rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 break-inside-avoid cursor-pointer animate-fade-up border border-white/50 bg-white"
+                  style={{ animationDelay: `${i * 50}ms` }}
+                >
+                  <img 
+                    src={getImageUrl(photo.image_url)} 
+                    alt={photo.title} 
+                    loading="lazy"
+                    className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-1000" 
+                  />
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-deeper/90 via-blue-deeper/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10">
+                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                      <span className="inline-block bg-yellow/20 backdrop-blur-md border border-yellow/30 px-3 py-1 rounded-lg text-[10px] font-black text-yellow uppercase tracking-widest mb-3">
+                        {photo.category}
+                      </span>
+                      <h3 className="text-white font-display font-black text-2xl leading-tight">
+                        {photo.title}
+                      </h3>
+                      <div className="w-10 h-1 bg-yellow mt-4 rounded-full"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Subtle border overlay */}
+                  <div className="absolute inset-0 border-[8px] border-white/0 group-hover:border-white/10 transition-all duration-500 pointer-events-none rounded-[2.5rem]"></div>
                 </div>
+              ))
+            ) : (
+              <div className="col-span-full py-24 text-center glass rounded-[3rem] border border-dashed border-gray-200">
+                <div className="opacity-20 mb-6">
+                   <svg className="w-20 h-20 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                   </svg>
+                </div>
+                <h3 className="font-display text-2xl font-black text-blue-dark/30 uppercase tracking-tighter">No visuals discovered yet</h3>
+                <p className="text-gray-text mt-4 font-medium">Be the first to see our new additions.</p>
               </div>
-            ))
-          ) : (
-            <div className="col-span-full py-20 text-center bg-white rounded-2xl border border-gray-light">
-              <h3 className="font-display text-2xl font-bold text-gray-400">No photos found</h3>
-              <p className="text-gray-text mt-2">Try selecting a different category.</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
 
