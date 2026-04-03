@@ -98,7 +98,7 @@ const Navbar = () => {
       <div
         className={clsx(
           'fixed inset-0 z-[60] flex flex-col transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+          isOpen ? 'translate-x-0 pointer-events-auto' : 'translate-x-full pointer-events-none'
         )}
       >
         {/* Background Overlay */}
