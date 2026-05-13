@@ -1,0 +1,36 @@
+/*
+  # === SECURITY HEADERS ===
+
+  # HSTS - Force HTTPS for 1 year, include subdomains, allow preload list
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # CSP - Whitelist only approved sources
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://*.supabase.co https://www.transparenttextures.com; connect-src 'self' https://*.supabase.co https://api.groq.com; frame-src https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests
+
+  # Prevent clickjacking
+  X-Frame-Options: SAMEORIGIN
+
+  # Prevent MIME-type sniffing (already present but reinforcing)
+  X-Content-Type-Options: nosniff
+
+  # Control referrer information
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # Restrict browser features/APIs
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), autoplay=(), fullscreen=(self), picture-in-picture=(self)
+
+  # Cross-Origin policies
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Cross-Origin-Resource-Policy: same-origin
+
+  # Remove server identification (Netlify respects this)
+  X-Powered-By: 
+
+  # XSS Protection (legacy but still useful for older browsers)
+  X-XSS-Protection: 1; mode=block
+
+  # Prevent caching of sensitive pages
+  Cache-Control: public, max-age=0, must-revalidate
+
+  # DNS prefetch control
+  X-DNS-Prefetch-Control: on
