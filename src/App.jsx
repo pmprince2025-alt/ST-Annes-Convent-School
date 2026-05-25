@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Chatbot from './components/ChatBot';
 import ScrollToTop from './components/ScrollToTop';
+import ErrorBoundary from './components/ErrorBoundary';
 import { Toaster } from 'react-hot-toast';
 
 // Lazy load pages
@@ -32,16 +33,18 @@ function App() {
               </div>
             </div>
           }>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/academics" element={<Academics />} />
-              <Route path="/events" element={<Events />} />
-              <Route path="/holidays" element={<Holidays />} />
-              <Route path="/notices" element={<Notices />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/contact" element={<Contact />} />
-            </Routes>
+              <ErrorBoundary>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/academics" element={<Academics />} />
+                  <Route path="/events" element={<Events />} />
+                  <Route path="/holidays" element={<Holidays />} />
+                  <Route path="/notices" element={<Notices />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/contact" element={<Contact />} />
+                </Routes>
+              </ErrorBoundary>
           </React.Suspense>
         </main>
         <Footer />

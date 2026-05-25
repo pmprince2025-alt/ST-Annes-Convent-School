@@ -4,8 +4,22 @@ import { useSupabaseQuery } from '../hooks/useSupabase';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
-import { Award, CheckCircle, BookOpen, ArrowRight, Star } from 'lucide-react';
-import * as PhosphorIcons from 'lucide-react'; // Dynamic icon loading fallback
+import { Award, CheckCircle, BookOpen, ArrowRight, Star, Music, Palette, Zap, Shield, Heart, Globe, Trophy, Camera, Mic, Code, Feather } from 'lucide-react';
+
+const ICON_MAP = {
+  music: Music,
+  palette: Palette,
+  zap: Zap,
+  shield: Shield,
+  heart: Heart,
+  globe: Globe,
+  'book-open': BookOpen,
+  trophy: Trophy,
+  camera: Camera,
+  mic: Mic,
+  code: Code,
+  feather: Feather,
+};
 
 const Academics = () => {
   const [activeTab, setActiveTab] = useState('Pre-Primary');
@@ -161,8 +175,7 @@ const Academics = () => {
                Array(3).fill(0).map((_, i) => <div key={i} className="h-64 glass animate-pulse rounded-3xl"></div>)
             ) : activitiesData?.length > 0 ? (
                activitiesData.map((act, i) => {
-                 const pascalIcon = act.icon.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
-                 const Icon = PhosphorIcons[pascalIcon] || PhosphorIcons.Star;
+                  const Icon = ICON_MAP[act.icon] || Star;
                  return (
                    <div key={act.id} className="group relative glass p-10 rounded-[2.5rem] border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2">
                      <div className="w-20 h-20 bg-white/5 rounded-[2rem] flex items-center justify-center mb-8 text-yellow border border-white/5 shadow-inner group-hover:scale-110 group-hover:bg-yellow group-hover:text-blue-deeper transition-all duration-500">

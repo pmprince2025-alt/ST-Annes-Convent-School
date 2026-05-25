@@ -109,13 +109,6 @@ const Chatbot = () => {
     setIsLoading(true);
 
     try {
-      const apiKey = import.meta.env.VITE_GROQ_API_KEY;
-      
-      if (!apiKey) {
-        throw new Error('Groq API Key is not configured. Please contact the administrator.');
-      }
-
-      // Convert format for the API call
       const fullSystemPrompt = SYSTEM_PROMPT + (schoolContext ? `\n\n${schoolContext}` : "");
       
       const apiMessages = [
@@ -124,12 +117,9 @@ const Chatbot = () => {
         { role: 'user', content: text }
       ];
 
-      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      const res = await fetch('/.netlify/functions/chat-proxy', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: 'llama-3.1-8b-instant',
           messages: apiMessages,
@@ -148,9 +138,7 @@ const Chatbot = () => {
       console.error("Chat error:", error);
       setMessages((prev) => [...prev, { 
         role: 'assistant', 
-        content: error.message === 'Groq API Key is not configured. Please contact the administrator.' 
-          ? error.message 
-          : "I'm having trouble connecting right now. Please try again later or contact the school office directly.", 
+        content: "I'm having trouble connecting right now. Please try again later or contact the school office directly.", 
         timestamp: new Date(),
         isError: true
       }]);
